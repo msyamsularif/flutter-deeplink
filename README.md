@@ -1,16 +1,18 @@
-# flutter_deeplink_example
+# Flutter Deeplink
 
-A new Flutter project.
+This project contains how to implement deeplinks with Flutter on the Android platform. For implementation details, you can read and follow the [Flutter](https://docs.flutter.dev/ui/navigation/deep-linking) and [Android](https://developer.android.com/training/app-links/deep-linking) documentation.
 
-## Getting Started
+## Tech
 
-This project is a starting point for a Flutter application.
+The Flutter deeplink project uses an open source package found on pub.dev, namely the [go_router](https://pub.dev/packages/go_router) package to implement routing in Flutter.
 
-A few resources to get you started if this is your first Flutter project:
+## Installation
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+To ensure the deeplink works, you can do it in several ways. First, run the following command in the project terminal
+```sh
+adb shell 'am start -W -a android.intent.action.VIEW \
+           -c android.intent.category.BROWSABLE \
+           -d "https://apaajakek.000webhostapp.com/details"'
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+or you can directly click the link that is registered in the **AndroidManifest.xml** file on the device that has this project installed. In this example project, you can directly click the following link **https://apaajakek.000webhostapp.com/details**

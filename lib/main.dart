@@ -2,14 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_deeplink_example/error_page.dart';
 import 'package:go_router/go_router.dart';
 
-void main() => runApp(MaterialApp.router(routerConfig: router));
+void main() => runApp(
+      MaterialApp.router(
+        routerConfig: router,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+      ),
+    );
 
 /// This handles '/' and '/details'.
+///
+/// When the path is not found it will redirect to the ErrorPage
 final router = GoRouter(
+  initialLocation: '/',
   routes: [
     GoRoute(
       path: '/',
-      builder: (_, __) => const MyApp(),
+      builder: (_, __) => const MyHomePage(title: 'Flutter Demo Home Page'),
       routes: [
         GoRoute(
           path: 'details',
@@ -22,22 +33,6 @@ final router = GoRouter(
   ],
   errorBuilder: (context, state) => const ErrorPage(),
 );
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
